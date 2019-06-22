@@ -1,2 +1,2 @@
 # EpicDice
-EpicDice is a decentralized dice game built on top of Steem blockchain with absolute transparency and fairness.
+Welcome to [EpicDice](https://epicdice.io/) - the open-source, decentralised gaming platform powered by Steem Blockchain. 
