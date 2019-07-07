@@ -892,7 +892,7 @@ def main():
                                     rate = int(memo[indexOfSpace:indexOfSpace+3])
                                     printX("indexOfSpace " + str(indexOfSpace))    
                                 except Exception as e:
-                                      print('fucking failed ' + str(e))  
+                                      print('failed ' + str(e))  
                                 factor = 0 + rate - 1
                                 betType = 2
                             else:
