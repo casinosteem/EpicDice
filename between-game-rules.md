@@ -35,7 +35,7 @@ where the third card is revealed. There are 3 outcomes:
 
 ## Clash
 
-Clash is the essense of Between. It is the ultimate penalty that can be happened to an ambitious player, the last thing a player would hope for when making a Call, is Clash. On the other hand, as a player you also always hope the other players to Clash as hard as they can, so the pot can grow exponentially and you can reap the profit with a single blow.
+Clash is the essence of Between. It is the ultimate penalty that can be happened to an ambitious player, the last thing a player would hope for when making a Call, is Clash. On the other hand, as a player you also always hope the other players to Clash as hard as they can, so the pot can grow exponentially and you can reap the profit with a single blow.
 
  
 
@@ -59,7 +59,7 @@ Each Ante and Call are independent verifiable event as they are generated using 
 
 1. Note down the **TXID** and **server** **hash** of Ante/Call from steemd.com.
 2. After 2 minutes the **server seed** is revealed via a broadcast from @epicdice to @epictoken. Note the server seed down from steemd.com.
-3. Go to [playcode.io](https://playcode.io/470482?tabs=script.js,preview,console) where the source code of card generator is available.
+3. Go to [_playcode.io_](https://playcode.io/470482?tabs=script.js,preview,console) where the source code of card generator is available.
 4. Input the collected TXID and server seed into the first four variables.
 5. Play the code, the result generated should be tally with what you've got in the game.
 
