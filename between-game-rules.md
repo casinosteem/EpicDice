@@ -55,7 +55,7 @@ House will have zero claims from whatever is holding by @betweenpot as it serve 
 
 ## Provably fair
 
-Each Ante and Call are independent verifiable event as they are generated using their own server seed and Transaction ID\(TXID\) respectively. Here is how you can verify the Between result before we get the fairness tool ready.
+Each Ante and Call are independent verifiable event as they are generated using their own server seed and Transaction ID\(TXID\) respectively. Here is how you can verify the Between result before we get the fairness tool ready. Card mapping and verification code and be found [_here_](https://epicdice.gitbook.io/epicdice/untitled#between).
 
 1. Note down the **TXID** and **server** **hash** of Ante/Call from steemd.com.
 2. After 2 minutes the **server seed** is revealed via a broadcast from @epicdice to @epictoken. Note the server seed down from steemd.com.
