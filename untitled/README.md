@@ -1,10 +1,14 @@
 # Fairness
 
-### Transaction ID is the only source to generate rolled number
+## Fairness that is provable
 
-When a user fires a bet\(transaction\) to the house account, the block contains that transaction has to be verified and signed by the Steem witness to be considered valid. In the process of block signing, various information of a particular transaction like `ref_block_num`, `ref_block_prefix`, `expiration` and so on, contributed in the generation of a fully random 40 hex digits `trx_id`. Read more about this process in [Steem Developer Portal](https://developers.steem.io/tutorials-recipes/understanding-transaction-status).
+All the random number generation on EpicDice is coming from **Transactino ID** and **Server Seed**. Transaction ID is generated on Steem blockchian the moment it is broadcasted. While server seed is decided by the house system every 2 minutes. An encoded server seed is published on the Steem blockchain before it was applied in new random number generation. Then the server seed is revealed before next one is generated.
 
-This very blockchain-generated `trx_id` is what EpicDice would solely use to generate a rolled number via formula below:
+This combination shows that the house would have **zero possibility to manipulate the outcome** while making sure system security is not compromised.
+
+## Dice
+
+Manual verification can be done over [_playcode.io_](https://playcode.io/450370?tabs=script.js,preview,console)_._
 
 ```javascript
 var transId ='<replace with trx_id>'
@@ -29,17 +33,143 @@ result = 1000000
 }
 ```
 
-You can find this formula in "Fairness" section of the game site and verify all your bet result instantly.
+## Between
 
-For interested souls in finding out how technically a `trx_id` is computed, the answer lies in [Steem Official GitHub Repository](https://github.com/steemit/steem).
+Manual verification can be done over [_playcode.io_](https://playcode.io/450370?tabs=script.js,preview,console)_._
 
-### But how is this system "provably-fair"?
+```javascript
+    var result_trans_id ="<Insert the transaction id of your bet that sent to epicdice>"
+    var serverSeed = "<Insert the server seed reveal by Epicdice every 2 minutes>"
 
-Now you know how a transaction ID is generated. Unlike other platforms, EpicDice does not add a custom client/server seed or nuances in the random number generation. It shows that the house would have **zero possibility to manipulate the outcome**.
+    var result = 1000000
+    var offset = 0
+    var length = 5
+    var endValue = offset + length
+    var chop
+    var tempResult
+    var won = 0
 
-You placed a bet and get a rolled number from the game site. Retrieve the transaction ID from data explorer like [steemd.com](https://steemd.com), input the ID into the formula above in a javascript compiler like [playcode.io](https://playcode.io/online-javascript-editor) and run it. The generated rolled number from the script would be exactly same as the one you get from our gaming site.
+    var tempHash = sha256(serverSeed + result_trans_id)
+    while (result > 999999) {
+        try {
+            chop = tempHash.substring(offset, endValue)
+            offset += 5
+            endValue = offset + length
+            result = parseInt(chop, 16)
+   
+            try {
+                tempResult = result % (10000) / 100
+                tempResult = Math.round(tempResult);
+                console.log("Final Result " + tempResult)
+                if (tempResult === 0) {
+                    result = 1000000
+                }
+            } catch (err2) {
+                console.log(err2)
+            }
+        } catch (err) {
+            console.log(err)
+            result = -1
+        }
+    }
 
-You confirmed that the house did not modify anything in the process. Hence, fairness is proven.
+function sha256(ascii) {
+	function rightRotate(value, amount) {
+		return (value>>>amount) | (value<<(32 - amount));
+	};
+	
+	var mathPow = Math.pow;
+	var maxWord = mathPow(2, 32);
+	var lengthProperty = 'length'
+	var i, j; // Used as a counter across the whole file
+	var result = ''
 
-Or better yet, just utilize the fairness tool on the game site to make your life easier.
+	var words = [];
+	var asciiBitLength = ascii[lengthProperty]*8;
+	
+	//* caching results is optional - remove/add slash from front of this line to toggle
+	// Initial hash value: first 32 bits of the fractional parts of the square roots of the first 8 primes
+	// (we actually calculate the first 64, but extra values are just ignored)
+	var hash = sha256.h = sha256.h || [];
+	// Round constants: first 32 bits of the fractional parts of the cube roots of the first 64 primes
+	var k = sha256.k = sha256.k || [];
+	var primeCounter = k[lengthProperty];
+	/*/
+	var hash = [], k = [];
+	var primeCounter = 0;
+	//*/
+
+	var isComposite = {};
+	for (var candidate = 2; primeCounter < 64; candidate++) {
+		if (!isComposite[candidate]) {
+			for (i = 0; i < 313; i += candidate) {
+				isComposite[i] = candidate;
+			}
+			hash[primeCounter] = (mathPow(candidate, .5)*maxWord)|0;
+			k[primeCounter++] = (mathPow(candidate, 1/3)*maxWord)|0;
+		}
+	}
+	
+	ascii += '\x80' // Append Ƈ' bit (plus zero padding)
+	while (ascii[lengthProperty]%64 - 56) ascii += '\x00' // More zero padding
+	for (i = 0; i < ascii[lengthProperty]; i++) {
+		j = ascii.charCodeAt(i);
+		if (j>>8) return; // ASCII check: only accept characters in range 0-255
+		words[i>>2] |= j << ((3 - i)%4)*8;
+	}
+	words[words[lengthProperty]] = ((asciiBitLength/maxWord)|0);
+	words[words[lengthProperty]] = (asciiBitLength)
+	
+	// process each chunk
+	for (j = 0; j < words[lengthProperty];) {
+		var w = words.slice(j, j += 16); // The message is expanded into 64 words as part of the iteration
+		var oldHash = hash;
+		// This is now the undefinedworking hash", often labelled as variables a...g
+		// (we have to truncate as well, otherwise extra entries at the end accumulate
+		hash = hash.slice(0, 8);
+		
+		for (i = 0; i < 64; i++) {
+			var i2 = i + j;
+			// Expand the message into 64 words
+			// Used below if 
+			var w15 = w[i - 15], w2 = w[i - 2];
+
+			// Iterate
+			var a = hash[0], e = hash[4];
+			var temp1 = hash[7]
+				+ (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) // S1
+				+ ((e&hash[5])^((~e)&hash[6])) // ch
+				+ k[i]
+				// Expand the message schedule if needed
+				+ (w[i] = (i < 16) ? w[i] : (
+						w[i - 16]
+						+ (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15>>>3)) // s0
+						+ w[i - 7]
+						+ (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2>>>10)) // s1
+					)|0
+				);
+			// This is only used once, so *could* be moved below, but it only saves 4 bytes and makes things unreadble
+			var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) // S0
+				+ ((a&hash[1])^(a&hash[2])^(hash[1]&hash[2])); // maj
+			
+			hash = [(temp1 + temp2)|0].concat(hash); // We don't bother trimming off the extra ones, they're harmless as long as we're truncating when we do the slice()
+			hash[4] = (hash[4] + temp1)|0;
+		}
+		
+		for (i = 0; i < 8; i++) {
+			hash[i] = (hash[i] + oldHash[i])|0;
+		}
+	}
+	
+	for (i = 0; i < 8; i++) {
+		for (j = 3; j + 1; j--) {
+			var b = (hash[i]>>(j*8))&255;
+			result += ((b < 16) ? 0 : '') + b.toString(16);
+		}
+	}
+	return result;
+};
+```
+
+
 
