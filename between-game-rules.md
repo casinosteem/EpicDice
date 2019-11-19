@@ -1,5 +1,7 @@
 # Between - Game Rules
 
+![](.gitbook/assets/screenshot_2019-11-19_08-48-52.png)
+
 ## Get in Between
 
 The game is simple. First two cards will form a range and you draw the third card. If the third card is in between of the range, you win. Else, you lose. 
