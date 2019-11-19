@@ -58,7 +58,7 @@ House will have zero claims from whatever is holding by @betweenpot as it serve 
 Each Ante and Call are independent verifiable event as they are generated using their own server seed and Transaction ID\(TXID\) respectively. Here is how you can verify the Between result before we get the fairness tool ready.
 
 1. Note down the **TXID** and **server** **hash** of Ante/Call from steemd.com.
-2. After 2 minutes the **server seed** is revealed via a broadcast from @epicdice to @epictoken. Note the **server seed** down from steemd.com.
+2. After 2 minutes the **server seed** is revealed via a broadcast from @epicdice to @epictoken. Note the server seed down from steemd.com.
 3. Go to \[playcode.io\]\([https://playcode.io/470482?tabs=preview,console](https://playcode.io/470482?tabs=preview,console)\) where the source code of card generator is available.
 4. Input the collected TXID and server seed into the first four variables.
 5. Play the code, the result generated should be tally with what you've got in the game.
