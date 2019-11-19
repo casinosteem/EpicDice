@@ -37,7 +37,7 @@ where the third card is revealed. There are 3 outcomes:
 
 Clash is the essence of Between. It is the ultimate penalty that can be happened to an ambitious player, the last thing a player would hope for when making a Call, is Clash. On the other hand, as a player you also always hope the other players to Clash as hard as they can, so the pot can grow exponentially and you can reap the profit with a single blow.
 
- 
+Due to the nature of this game, Clash amount will always be coupled with the Call amount and be fired as an official Call bet. As long as the third card is not the same as the first two, Clash amount will be refunded.
 
 ## Pot cleared
 
