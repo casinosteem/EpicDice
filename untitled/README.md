@@ -37,6 +37,22 @@ result = 1000000
 
 Manual verification can be done over [_playcode.io_](https://playcode.io/450370?tabs=script.js,preview,console)_._
 
+| rawValue | Face Value |
+| :--- | :--- |
+| 0 - 3 | A |
+| 4 - 7 | 2 |
+| 8 - 11 | 3 |
+| 12 - 15 | 4 |
+| 16 - 19 | 5 |
+| 20 - 23 | 6 |
+| 24 - 27 | 7 |
+| 28 - 31 | 8 |
+| 32 - 35 | 9 |
+| 36- 39 | 10 |
+| 40 - 43 | J |
+| 44 - 47 | Q |
+| 48 - 51 | K |
+
 ```javascript
     var result_trans_id ="<Insert the transaction id of your bet that sent to epicdice>"
     var serverSeed = "<Insert the server seed reveal by Epicdice every 2 minutes>"
