@@ -6,7 +6,7 @@
 
 The game is simple. First two cards will form a range and you draw the third card. If the third card is in between of the range, you win. Else, you lose. 
 
-Ace is the smallest while King is the biggest. In ascending order, the order of face value is `A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K` . Suit does not matter in this game.
+Ace is the smallest while King is the biggest. In ascending order, the order of face value is `A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K` . Every round starts with a full deck of 52 cards while each drawn cards is removed from the deck. Suit does not matter in this game.
 
 These are the rules for different stage, aka the
 
@@ -29,9 +29,9 @@ where the third card is revealed. There are 3 outcomes:
 
 ### Types of transferable bets
 
-**Ante**: A non-refundable fee to reveal the first two cards. Call amount will not exceed 20 times of Ante.
+**Ante**: A non-refundable fee to reveal the first two cards. Call amount will not exceed **10 times** of Ante.
 
-**Call**: The amount you would like to take away from the pot. Call amount is flexible but has a maximum of 20 times the Ante. E.g. Player can only call up to 100 STEEM if their Ante was 5 STEEM for that round.
+**Call**: The amount you would like to take away from the pot. Call amount is flexible but has a maximum of **10 times** the Ante. E.g. Player can only call up to 100 STEEM if their Ante was 5 STEEM for that round.
 
 **Clash**: Always equal to Call amount and to be sent in together with Call. Refund at the end of round except in Clash case.
 
